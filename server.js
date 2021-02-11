@@ -31,7 +31,7 @@ app.get("/:zipcode", (req, res) => {
     weather.find({search:req.params.zipcode, degreeType: "f"}, function(err, result) {
         if(err) console.log(err)
         myWeather = result, null, 2
-        res.send(`The current temperature in your area is: ${myWeather[0].current.temperature} degrees fahrenheit. The sky is ${myWeather[0].current.skytext}.`)
+        res.send(`The current temperature in your area is: ${myWeather[0].current.temperature} degrees fahrenheit. The sky is ${myWeather[0].current.skytext}<br><a href="/">return to home</a>.`)
     })
 })
 
