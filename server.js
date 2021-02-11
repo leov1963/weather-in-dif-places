@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
-    res.send("hello")
+    res.render("index")
 });
 
 const PORT = process.env.PORT || 8000;
