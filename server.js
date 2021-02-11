@@ -5,7 +5,7 @@ const axios = require('axios');
 const ejsLayouts = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const db = require("./models")
-
+const weather = require("weather-js")
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -24,6 +24,15 @@ app.get('/', async(req, res) => {
         console.log(e)
     };
 
+})
+
+let myWeather = []
+app.get("/:zipcode", (req, res) => {
+    weather.find({search:req.params.zipcode, degreeType: "f"}, function(err, result) {
+        if(err) console.log(err)
+        myWeather = result, null, 2
+        res.send(`The current temperature in your area is: ${myWeather[0].current.temperature} degrees fahrenheit. The sky is ${myWeather[0].current.skytext}.`)
+    })
 })
 
 const PORT = process.env.PORT || 8000;
