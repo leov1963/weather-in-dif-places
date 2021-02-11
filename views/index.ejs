@@ -1,6 +1,6 @@
 <h1>List of Places</h1>
 <ul>
     <% for (let i = 0; i < places.length; i++){%>
-    <li><%=places[i].name %></li>
+    <li><a href="/<%=places[i].zipcode%>"><%=places[i].name %></a></li>
     <%}%>
 </ul>
