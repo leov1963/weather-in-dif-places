@@ -38,36 +38,33 @@ app.post('/new', (req, res) => {
     });
 })
 
-
-let myWeather = []
 app.get("/:zipcode", (req, res) => {
     weather.find({search:req.params.zipcode, degreeType: "f"}, function(err, result) {
         if(err) console.log(err)
-        myWeather = result, null, 2
-        res.send(`The current temperature in your area is: ${myWeather[0].current.temperature} degrees fahrenheit. The sky is ${myWeather[0].current.skytext}<br><a href="/">return to home</a>.
-        <form action="/<%=req.params.zipcode%>?_method=DELETE" method="POST">
-        <button type="submit">Delete Place</button>
-      </form>`)
+        // const myWeather 
+        console.log(result)
+        const temperature = result[0].current.temperature
+        const skytext = result[0].current.skytext
+        const zipcode = result[0].location.zipcode
+        res.render("show", { temperature, skytext, zipcode })
     })
 })
 
-app.delete('/', (req, res) => {
-    console.log(req.body, "************************")
+app.post('/:zipcode', (req, res) => {
+    console.log(req.body.name, "************************")
+    console.log(req.params)
     try{
         db.place.destroy({
           where: {
-            id: req.body.id
+            zipcode: req.params.zipcode
           }
         })
         console.log('Deleted Place = ',);
         res.redirect('/');
-
     } catch(error) {
         console.log(error)
     }
 });
-
-
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
