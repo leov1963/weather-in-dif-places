@@ -2,9 +2,6 @@
 <ul>
     <% for (let i = 0; i < places.length; i++){%>
     <li><a href="/<%=places[i].zipcode%>"><%=places[i].name %></a></li>
-    <form action="/?_method=DELETE" method="POST">
-        <button type="submit">Delete Place</button>
-    </form>
     <%}%>
 </ul>
 <hr>
