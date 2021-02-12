@@ -1,6 +1,8 @@
-<!-- <p>
-    <% 
-    The current temperature in your area is: <%=myWeather[0].current.temperature%> degrees fahrenheit. The sky is <%=myWeather[0].current.skytext%>
+<p>
+    The current temperature in your area is: <%=temperature%> degrees fahrenheit. The sky is <%=skytext%>
     <br>
     <a href="/">return to home</a>.
-</p> -->
+    <form action="/<%=zipcode%>" method="POST">
+        <button type="submit">Delete Place</button>
+    </form>
+</p>
